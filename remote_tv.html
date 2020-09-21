@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function Remote(seri,tv){
+        this.seri = seri;
+        this.tv = tv;
+        this.chuyenKenh = function (number){
+            this.tv.chuyenKenhTv(number);
+        }
+        this.tangAmThanh = function (){
+            this.tv.tangAmLuong();
+        }
+        this.giamAmThanh = function (){
+            this.tv.giamAmLuong();
+        }
+        this.batTat = function (){
+            this.tv.onOff();
+        };
+    }
+    function TiVi(kenhDangPhat,amLuongHienThoi,status){
+        this.kenhDangPhat = kenhDangPhat;
+        this.amLuongHienThoi = amLuongHienThoi;
+        this.status = status;
+        this.onOff = function (){
+            if(this.status === 'on'){
+                this.status = 'off';
+            }else{
+                this.status = 'on';
+            }
+        }
+        this.chuyenKenhTv = function (soKenh){
+            if(this.kenhDangPhat === soKenh){
+                alert('ban van dang o kenh '+this.kenhDangPhat);
+            }else{
+                this.kenhDangPhat = soKenh;
+            }
+        }
+        this.tangAmLuong = function (){
+            if(this.amLuongHienThoi >= 100){
+                console.log('am luong da max');
+            }else{
+                this.amLuongHienThoi++;
+            }
+        }
+        this.giamAmLuong = function (){
+            if(this.amLuongHienThoi < 1){
+                console.log('am luong  = 0');
+            }else{
+                this.amLuongHienThoi--;
+            }
+        }
+    }
+    let tv1 = new TiVi(1,20,'off')
+    let dk1 = new Remote('xxx',tv1);
+     dk1.batTat();
+
+     console.log(tv1.kenhDangPhat+' '+tv1.amLuongHienThoi+' '+tv1.status);
+     dk1.chuyenKenh(7);
+     console.log(tv1.kenhDangPhat);
+     tv1.tangAmLuong();
+     tv1.tangAmLuong();
+     console.log(tv1.amLuongHienThoi);
+     dk1.tangAmThanh();
+     console.log(tv1.amLuongHienThoi);
+
+
+
+
+</script>
+</body>
+</html>
